@@ -15,7 +15,7 @@ typedef struct {
 } Process;
 
 // Function to calculate waiting time
-void findWaitingTime(Process processes[], int n, int wt[]) {
+void findWaitingTimeSJF(Process processes[], int n, int wt[]) {
     int service_time[n];
     service_time[0] = processes[0].at;  // First process starts at arrival time
     wt[0] = 0;  // First process has no waiting time
@@ -33,14 +33,14 @@ void findWaitingTime(Process processes[], int n, int wt[]) {
 
 // Function to calculate turn around time (TAT)
 // TAT = Burst Time + Waiting Time
-void findTurnAroundTime(Process processes[], int n, int wt[], int tat[]) {
+void findTurnAroundTimeSJF(Process processes[], int n, int wt[], int tat[]) {
     for (int i = 0; i < n; i++) {
         tat[i] = processes[i].bt + wt[i];
     }
 }
 
 // Function to print Gantt Chart
-void printGanttChart(Process processes[], int n) {
+void printGanttChartSJF(Process processes[], int n) {
     printf("\nGantt Chart for SJF:\n");
 
     // Top border
@@ -83,12 +83,12 @@ void printGanttChart(Process processes[], int n) {
 }
 
 // Function to calculate and display average times
-void findavgTime(Process processes[], int n) {
+void findavgTimeSJF(Process processes[], int n) {
     // Initialize waiting time (wt) and turnaround time (tat) arrays
     int wt[n], tat[n], total_wt = 0, total_tat = 0;
 
-    findWaitingTime(processes, n, wt);
-    findTurnAroundTime(processes, n, wt, tat);
+    findWaitingTimeSJF(processes, n, wt);
+    findTurnAroundTimeSJF(processes, n, wt, tat);
 
     // Display process details
     printf("\nProcess ID  Arrival Time  Burst Time  Waiting Time  Turnaround Time\n");
@@ -109,7 +109,7 @@ void findavgTime(Process processes[], int n) {
     }
 
     // Print Gantt Chart
-    printGanttChart(processes, n);
+    printGanttChartSJF(processes, n);
 }
 
 // Function to compare processes by arrival time first, then by burst time
@@ -152,7 +152,7 @@ int main() {
     printf("\nScheduling using SJF:\n");
 
     // Calculate average time and print Gantt chart
-    findavgTime(processes, n);
+    findavgTimeSJF(processes, n);
 
     fclose(file);
     return 0;
