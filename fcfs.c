@@ -1,3 +1,7 @@
+// First-Come, First-Served (FCFS) CPU Scheduling Algorithm in C
+// This program reads process data from a file, sorts the processes based on arrival time,
+// calculates waiting time and turnaround time, and prints the Gantt chart along with average times.
+
 #include <stdio.h>
 
 // Function to calculate waiting time
